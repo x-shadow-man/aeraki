@@ -58,7 +58,7 @@ func main() {
 	})
 
 	setLogLevels(args.LogLevel)
-	// Create the stop channel for all of the servers.
+	// Create the stop channel for all servers.
 	stopChan := make(chan struct{}, 1)
 	args.Protocols = initGenerators()
 	server, err := bootstrap.NewServer(args)

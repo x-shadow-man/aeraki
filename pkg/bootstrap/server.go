@@ -71,6 +71,7 @@ func NewServer(args *AerakiArgs) (*Server, error) {
 	configController := config.NewController(args.IstiodAddr)
 	serviceEntryController := serviceentry.NewController(ic)
 	envoyFilterController := envoyfilter.NewController(ic, configController.Store, args.Protocols)
+
 	configController.RegisterEventHandler(args.Protocols, func(_, curr istioconfig.Config, event model.Event) {
 		envoyFilterController.ConfigUpdated(event)
 	})
